@@ -1,0 +1,13 @@
+{
+  "generatorName": "python",
+  "library": "httpx",
+  "inputSpec": "openapi/rivalika-public-api.json",
+  "outputDir": ".",
+  "additionalProperties": {
+    "packageName": "rivalika_sdk",
+    "projectName": "rivalika-sdk",
+    "packageVersion": "1.0.0b1",
+    "generateSourceCodeOnly": false,
+    "licenseName": "Apache-2.0"
+  }
+}
