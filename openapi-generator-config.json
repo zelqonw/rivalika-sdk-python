@@ -1,6 +1,7 @@
 {
   "generatorName": "python",
   "library": "httpx",
+  "templateDir": "openapi-templates",
   "inputSpec": "openapi/rivalika-public-api.json",
   "outputDir": ".",
   "additionalProperties": {

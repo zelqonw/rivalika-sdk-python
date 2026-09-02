@@ -22,7 +22,7 @@ def generated_model(module_name: str, class_name: str) -> type[Any]:
     assert importlib.util.find_spec(qualified_name) is not None, (
         f"missing generated model {class_name}"
     )
-    model_type = getattr(importlib.import_module(qualified_name), class_name)
+    model_type: type[Any] = getattr(importlib.import_module(qualified_name), class_name)
     package = importlib.import_module("rivalika_sdk")
     assert getattr(package, class_name, None) is model_type, f"missing package export {class_name}"
     return model_type

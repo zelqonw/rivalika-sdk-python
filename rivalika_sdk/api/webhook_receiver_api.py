@@ -38,10 +38,10 @@ class WebhookReceiverApi:
     @validate_call
     async def receive_rivalika_webhook(
         self,
-        webhook_id: ,
-        webhook_timestamp: ,
-        webhook_signature: ,
-        receive_rivalika_webhook_request: ,
+        webhook_id: str,
+        webhook_timestamp: str,
+        webhook_signature: str,
+        receive_rivalika_webhook_request: ReceiveRivalikaWebhookRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -116,10 +116,10 @@ class WebhookReceiverApi:
     @validate_call
     async def receive_rivalika_webhook_with_http_info(
         self,
-        webhook_id: ,
-        webhook_timestamp: ,
-        webhook_signature: ,
-        receive_rivalika_webhook_request: ,
+        webhook_id: str,
+        webhook_timestamp: str,
+        webhook_signature: str,
+        receive_rivalika_webhook_request: ReceiveRivalikaWebhookRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -194,10 +194,10 @@ class WebhookReceiverApi:
     @validate_call
     async def receive_rivalika_webhook_without_preload_content(
         self,
-        webhook_id: ,
-        webhook_timestamp: ,
-        webhook_signature: ,
-        receive_rivalika_webhook_request: ,
+        webhook_id: str,
+        webhook_timestamp: str,
+        webhook_signature: str,
+        receive_rivalika_webhook_request: ReceiveRivalikaWebhookRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
