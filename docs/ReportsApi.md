@@ -18,7 +18,7 @@ Create a report definition
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -38,7 +38,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
@@ -102,7 +102,7 @@ Start a report run
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -121,7 +121,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
@@ -185,7 +185,7 @@ Download a completed report
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -204,7 +204,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
@@ -266,7 +266,7 @@ Get a report definition
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -285,7 +285,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
@@ -347,7 +347,7 @@ List report definitions
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -366,7 +366,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )

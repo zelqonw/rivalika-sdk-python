@@ -110,7 +110,7 @@ HTTPSignatureAuthSetting = TypedDict(
 AuthSettings = TypedDict(
     "AuthSettings",
     {
-        "RivalikaApiKey": BearerFormatAuthSetting,
+        "RivalikaApiKey": BearerAuthSetting,
     },
     total=False,
 )
@@ -517,7 +517,6 @@ class Configuration:
             auth['RivalikaApiKey'] = {
                 'type': 'bearer',
                 'in': 'header',
-                'format': 'Rivalika API key',
                 'key': 'Authorization',
                 'value': 'Bearer ' + self.access_token
             }
