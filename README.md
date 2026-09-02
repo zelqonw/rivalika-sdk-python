@@ -5,7 +5,7 @@ committed OpenAPI 3.1 contract with OpenAPI Generator 7.22.0. The package also
 includes maintained sync/async HTTP helpers and signed-webhook verification.
 
 The beta package name is `rivalika-sdk` and its first approved release will be
-`1.0.0b1`. Registry publication is a separate release approval; until that tag
+`1.0.0b2`. Registry publication is a separate release approval; until that tag
 is published, clone this repository and install it with `python -m pip install -e .`.
 
 Python 3.9 or newer is supported.

@@ -4,6 +4,7 @@ All URIs are relative to *https://api.rivalika.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**archive_commercial_product**](CommercialCatalogApi.md#archive_commercial_product) | **POST** /api/v1/commercial/products/{productId}/archive | Archive a commercial product
 [**create_commercial_partner**](CommercialCatalogApi.md#create_commercial_partner) | **POST** /api/v1/commercial/partners | Create a commercial partner
 [**create_commercial_product**](CommercialCatalogApi.md#create_commercial_product) | **POST** /api/v1/commercial/products | Create a commercial product
 [**delete_commercial_product**](CommercialCatalogApi.md#delete_commercial_product) | **DELETE** /api/v1/commercial/products/{commercial_product_id} | Delete a commercial product
@@ -13,10 +14,95 @@ Method | HTTP request | Description
 [**get_market_link**](CommercialCatalogApi.md#get_market_link) | **GET** /api/v1/commercial/products/{commercial_product_id}/market-link | Get a market link
 [**list_commercial_partners**](CommercialCatalogApi.md#list_commercial_partners) | **GET** /api/v1/commercial/partners | List commercial partners
 [**list_commercial_products**](CommercialCatalogApi.md#list_commercial_products) | **GET** /api/v1/commercial/products | List commercial products
+[**restore_commercial_product**](CommercialCatalogApi.md#restore_commercial_product) | **POST** /api/v1/commercial/products/{productId}/restore | Restore a commercial product
 [**set_market_link**](CommercialCatalogApi.md#set_market_link) | **PUT** /api/v1/commercial/products/{commercial_product_id}/market-link | Set a market link
 [**update_commercial_partner**](CommercialCatalogApi.md#update_commercial_partner) | **PATCH** /api/v1/commercial/partners/{partner_id} | Update a commercial partner
 [**update_commercial_product**](CommercialCatalogApi.md#update_commercial_product) | **PATCH** /api/v1/commercial/products/{commercial_product_id} | Update a commercial product
 
+
+# **archive_commercial_product**
+> CommercialProductLifecycleEnvelope archive_commercial_product(idempotency_key, product_id)
+
+Archive a commercial product
+
+### Example
+
+* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+
+```python
+import rivalika_sdk
+from rivalika_sdk.models.commercial_product_lifecycle_envelope import CommercialProductLifecycleEnvelope
+from rivalika_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.rivalika.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rivalika_sdk.Configuration(
+    host = "https://api.rivalika.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+configuration = rivalika_sdk.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with rivalika_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rivalika_sdk.CommercialCatalogApi(api_client)
+    idempotency_key = 'idempotency_key_example' # str | Unique key retained for 24 hours. Reusing a key with another payload returns 409.
+    product_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Archive a commercial product
+        api_response = await api_instance.archive_commercial_product(idempotency_key, product_id)
+        print("The response of CommercialCatalogApi->archive_commercial_product:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CommercialCatalogApi->archive_commercial_product: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idempotency_key** | **str**| Unique key retained for 24 hours. Reusing a key with another payload returns 409. | 
+ **product_id** | **UUID**|  | 
+
+### Return type
+
+[**CommercialProductLifecycleEnvelope**](CommercialProductLifecycleEnvelope.md)
+
+### Authorization
+
+[RivalikaApiKey](../README.md#RivalikaApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Invalid request |  -  |
+**401** | Invalid or expired API key |  -  |
+**403** | Missing required scope |  -  |
+**404** | Resource not found |  -  |
+**409** | Conflict or idempotency mismatch |  -  |
+**429** | Rate or concurrency limit exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_commercial_partner**
 > DataEnvelope create_commercial_partner(idempotency_key, create_commercial_partner_request)
@@ -797,6 +883,90 @@ Name | Type | Description  | Notes
 **400** | Invalid request |  -  |
 **401** | Invalid or expired API key |  -  |
 **403** | Missing required scope |  -  |
+**409** | Conflict or idempotency mismatch |  -  |
+**429** | Rate or concurrency limit exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **restore_commercial_product**
+> CommercialProductLifecycleEnvelope restore_commercial_product(idempotency_key, product_id)
+
+Restore a commercial product
+
+### Example
+
+* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+
+```python
+import rivalika_sdk
+from rivalika_sdk.models.commercial_product_lifecycle_envelope import CommercialProductLifecycleEnvelope
+from rivalika_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.rivalika.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rivalika_sdk.Configuration(
+    host = "https://api.rivalika.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+configuration = rivalika_sdk.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with rivalika_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rivalika_sdk.CommercialCatalogApi(api_client)
+    idempotency_key = 'idempotency_key_example' # str | Unique key retained for 24 hours. Reusing a key with another payload returns 409.
+    product_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Restore a commercial product
+        api_response = await api_instance.restore_commercial_product(idempotency_key, product_id)
+        print("The response of CommercialCatalogApi->restore_commercial_product:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CommercialCatalogApi->restore_commercial_product: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idempotency_key** | **str**| Unique key retained for 24 hours. Reusing a key with another payload returns 409. | 
+ **product_id** | **UUID**|  | 
+
+### Return type
+
+[**CommercialProductLifecycleEnvelope**](CommercialProductLifecycleEnvelope.md)
+
+### Authorization
+
+[RivalikaApiKey](../README.md#RivalikaApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Invalid request |  -  |
+**401** | Invalid or expired API key |  -  |
+**403** | Missing required scope |  -  |
+**404** | Resource not found |  -  |
 **409** | Conflict or idempotency mismatch |  -  |
 **429** | Rate or concurrency limit exceeded |  -  |
 

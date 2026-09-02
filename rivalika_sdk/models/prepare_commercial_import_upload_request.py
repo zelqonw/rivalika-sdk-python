@@ -17,19 +17,41 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Any, ClassVar, Dict, List
-from rivalika_sdk.models.accepted_envelope_data import AcceptedEnvelopeData
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class AcceptedEnvelope(BaseModel):
+class PrepareCommercialImportUploadRequest(BaseModel):
     """
-    AcceptedEnvelope
+    PrepareCommercialImportUploadRequest
     """ # noqa: E501
-    data: AcceptedEnvelopeData
-    __properties: ClassVar[List[str]] = ["data"]
+    file_name: Annotated[str, Field(min_length=1, strict=True, max_length=240)] = Field(alias="fileName")
+    content_sha256: Annotated[str, Field(strict=True)] = Field(alias="contentSha256")
+    size_bytes: Annotated[int, Field(le=26214400, strict=True, gt=0)] = Field(alias="sizeBytes")
+    __properties: ClassVar[List[str]] = ["fileName", "contentSha256", "sizeBytes"]
+
+    @field_validator('file_name')
+    def file_name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^.*\.(?:[cC][sS][vV]|[xX][lL][sS][xX])$", value):
+            raise ValueError(r"must validate the regular expression /^.*\.(?:[cC][sS][vV]|[xX][lL][sS][xX])$/")
+        return value
+
+    @field_validator('content_sha256')
+    def content_sha256_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[0-9a-f]{64}$", value):
+            raise ValueError(r"must validate the regular expression /^[0-9a-f]{64}$/")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -49,7 +71,7 @@ class AcceptedEnvelope(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AcceptedEnvelope from a JSON string"""
+        """Create an instance of PrepareCommercialImportUploadRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,14 +92,11 @@ class AcceptedEnvelope(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of data
-        if self.data:
-            _dict['data'] = self.data.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AcceptedEnvelope from a dict"""
+        """Create an instance of PrepareCommercialImportUploadRequest from a dict"""
         if obj is None:
             return None
 
@@ -85,7 +104,9 @@ class AcceptedEnvelope(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "data": AcceptedEnvelopeData.from_dict(obj["data"]) if obj.get("data") is not None else None
+            "fileName": obj.get("fileName"),
+            "contentSha256": obj.get("contentSha256"),
+            "sizeBytes": obj.get("sizeBytes")
         })
         return _obj
 

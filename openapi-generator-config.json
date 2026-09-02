@@ -6,7 +6,7 @@
   "additionalProperties": {
     "packageName": "rivalika_sdk",
     "projectName": "rivalika-sdk",
-    "packageVersion": "1.0.0b1",
+    "packageVersion": "1.0.0b2",
     "generateSourceCodeOnly": false,
     "licenseName": "Apache-2.0"
   }

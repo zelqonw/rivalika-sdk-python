@@ -19,16 +19,16 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from rivalika_sdk.models.accepted_envelope_data import AcceptedEnvelopeData
+from rivalika_sdk.models.commercial_import_detail_envelope_data import CommercialImportDetailEnvelopeData
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class AcceptedEnvelope(BaseModel):
+class CommercialImportDetailEnvelope(BaseModel):
     """
-    AcceptedEnvelope
+    CommercialImportDetailEnvelope
     """ # noqa: E501
-    data: AcceptedEnvelopeData
+    data: CommercialImportDetailEnvelopeData
     __properties: ClassVar[List[str]] = ["data"]
 
     model_config = ConfigDict(
@@ -49,7 +49,7 @@ class AcceptedEnvelope(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AcceptedEnvelope from a JSON string"""
+        """Create an instance of CommercialImportDetailEnvelope from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -77,7 +77,7 @@ class AcceptedEnvelope(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AcceptedEnvelope from a dict"""
+        """Create an instance of CommercialImportDetailEnvelope from a dict"""
         if obj is None:
             return None
 
@@ -85,7 +85,7 @@ class AcceptedEnvelope(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "data": AcceptedEnvelopeData.from_dict(obj["data"]) if obj.get("data") is not None else None
+            "data": CommercialImportDetailEnvelopeData.from_dict(obj["data"]) if obj.get("data") is not None else None
         })
         return _obj
 

@@ -17,19 +17,27 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from rivalika_sdk.models.accepted_envelope_data import AcceptedEnvelopeData
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class AcceptedEnvelope(BaseModel):
+class CommercialProductLifecycleEnvelopeData(BaseModel):
     """
-    AcceptedEnvelope
+    CommercialProductLifecycleEnvelopeData
     """ # noqa: E501
-    data: AcceptedEnvelopeData
-    __properties: ClassVar[List[str]] = ["data"]
+    product_id: UUID
+    status: StrictStr
+    __properties: ClassVar[List[str]] = ["product_id", "status"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['active', 'archived']):
+            raise ValueError("must be one of enum values ('active', 'archived')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -49,7 +57,7 @@ class AcceptedEnvelope(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AcceptedEnvelope from a JSON string"""
+        """Create an instance of CommercialProductLifecycleEnvelopeData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,14 +78,11 @@ class AcceptedEnvelope(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of data
-        if self.data:
-            _dict['data'] = self.data.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AcceptedEnvelope from a dict"""
+        """Create an instance of CommercialProductLifecycleEnvelopeData from a dict"""
         if obj is None:
             return None
 
@@ -85,7 +90,8 @@ class AcceptedEnvelope(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "data": AcceptedEnvelopeData.from_dict(obj["data"]) if obj.get("data") is not None else None
+            "product_id": obj.get("product_id"),
+            "status": obj.get("status")
         })
         return _obj
 
