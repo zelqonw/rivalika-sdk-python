@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -29,7 +29,7 @@ class CommercialImportDetailEnvelopeDataRowErrorsInner(BaseModel):
     CommercialImportDetailEnvelopeDataRowErrorsInner
     """ # noqa: E501
     row_number: Annotated[int, Field(strict=True, gt=0)]
-    message: StrictStr
+    message: Annotated[str, Field(strict=True, max_length=160)]
     __properties: ClassVar[List[str]] = ["row_number", "message"]
 
     model_config = ConfigDict(

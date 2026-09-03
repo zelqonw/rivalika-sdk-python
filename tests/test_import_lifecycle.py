@@ -3,6 +3,8 @@ from __future__ import annotations
 import importlib
 import importlib.util
 import json
+from pydantic import ValidationError
+import pytest
 from typing import Any
 from uuid import UUID
 
@@ -147,6 +149,16 @@ def test_round_trips_bounded_import_detail_response() -> None:
 
     assert model is not None
     assert json.loads(model.to_json()) == wire
+
+
+def test_rejects_import_row_error_messages_longer_than_160_characters() -> None:
+    row_error_type = generated_model(
+        "commercial_import_detail_envelope_data_row_errors_inner",
+        "CommercialImportDetailEnvelopeDataRowErrorsInner",
+    )
+
+    with pytest.raises(ValidationError, match="at most 160 characters"):
+        row_error_type(row_number=1, message="x" * 161)
 
 
 def test_serializes_archive_and_restore_with_authentication_and_idempotency() -> None:
