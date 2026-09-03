@@ -1311,7 +1311,7 @@ class CommercialImportsApi:
     @validate_call
     async def prepare_commercial_import_upload(
         self,
-        idempotency_key: Annotated[str, Field(min_length=1, strict=True, max_length=255, description="Unique key retained for 24 hours. Reusing a key with another payload returns 409.")],
+        idempotency_key: Annotated[str, Field(min_length=1, strict=True, max_length=255, description="Unique key retained for 900 seconds. Reusing a key with another payload returns 409.")],
         prepare_commercial_import_upload_request: PrepareCommercialImportUploadRequest,
         _request_timeout: Union[
             None,
@@ -1329,7 +1329,7 @@ class CommercialImportsApi:
         """Prepare a commercial import upload
 
 
-        :param idempotency_key: Unique key retained for 24 hours. Reusing a key with another payload returns 409. (required)
+        :param idempotency_key: Unique key retained for 900 seconds. Reusing a key with another payload returns 409. (required)
         :type idempotency_key: str
         :param prepare_commercial_import_upload_request: (required)
         :type prepare_commercial_import_upload_request: PrepareCommercialImportUploadRequest
@@ -1386,7 +1386,7 @@ class CommercialImportsApi:
     @validate_call
     async def prepare_commercial_import_upload_with_http_info(
         self,
-        idempotency_key: Annotated[str, Field(min_length=1, strict=True, max_length=255, description="Unique key retained for 24 hours. Reusing a key with another payload returns 409.")],
+        idempotency_key: Annotated[str, Field(min_length=1, strict=True, max_length=255, description="Unique key retained for 900 seconds. Reusing a key with another payload returns 409.")],
         prepare_commercial_import_upload_request: PrepareCommercialImportUploadRequest,
         _request_timeout: Union[
             None,
@@ -1404,7 +1404,7 @@ class CommercialImportsApi:
         """Prepare a commercial import upload
 
 
-        :param idempotency_key: Unique key retained for 24 hours. Reusing a key with another payload returns 409. (required)
+        :param idempotency_key: Unique key retained for 900 seconds. Reusing a key with another payload returns 409. (required)
         :type idempotency_key: str
         :param prepare_commercial_import_upload_request: (required)
         :type prepare_commercial_import_upload_request: PrepareCommercialImportUploadRequest
@@ -1461,7 +1461,7 @@ class CommercialImportsApi:
     @validate_call
     async def prepare_commercial_import_upload_without_preload_content(
         self,
-        idempotency_key: Annotated[str, Field(min_length=1, strict=True, max_length=255, description="Unique key retained for 24 hours. Reusing a key with another payload returns 409.")],
+        idempotency_key: Annotated[str, Field(min_length=1, strict=True, max_length=255, description="Unique key retained for 900 seconds. Reusing a key with another payload returns 409.")],
         prepare_commercial_import_upload_request: PrepareCommercialImportUploadRequest,
         _request_timeout: Union[
             None,
@@ -1479,7 +1479,7 @@ class CommercialImportsApi:
         """Prepare a commercial import upload
 
 
-        :param idempotency_key: Unique key retained for 24 hours. Reusing a key with another payload returns 409. (required)
+        :param idempotency_key: Unique key retained for 900 seconds. Reusing a key with another payload returns 409. (required)
         :type idempotency_key: str
         :param prepare_commercial_import_upload_request: (required)
         :type prepare_commercial_import_upload_request: PrepareCommercialImportUploadRequest

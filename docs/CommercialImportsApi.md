@@ -391,7 +391,7 @@ configuration = rivalika_sdk.Configuration(
 async with rivalika_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rivalika_sdk.CommercialImportsApi(api_client)
-    idempotency_key = 'idempotency_key_example' # str | Unique key retained for 24 hours. Reusing a key with another payload returns 409.
+    idempotency_key = 'idempotency_key_example' # str | Unique key retained for 900 seconds. Reusing a key with another payload returns 409.
     prepare_commercial_import_upload_request = rivalika_sdk.PrepareCommercialImportUploadRequest() # PrepareCommercialImportUploadRequest | 
 
     try:
@@ -410,7 +410,7 @@ async with rivalika_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idempotency_key** | **str**| Unique key retained for 24 hours. Reusing a key with another payload returns 409. | 
+ **idempotency_key** | **str**| Unique key retained for 900 seconds. Reusing a key with another payload returns 409. | 
  **prepare_commercial_import_upload_request** | [**PrepareCommercialImportUploadRequest**](PrepareCommercialImportUploadRequest.md)|  | 
 
 ### Return type
