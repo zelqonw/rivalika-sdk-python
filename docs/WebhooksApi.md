@@ -23,7 +23,7 @@ Create a webhook endpoint
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -43,7 +43,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
@@ -107,7 +107,7 @@ Delete a webhook endpoint
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -126,7 +126,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
@@ -190,7 +190,7 @@ Get a webhook delivery
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -209,7 +209,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
@@ -271,7 +271,7 @@ Get a webhook endpoint
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -290,7 +290,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
@@ -352,7 +352,7 @@ List webhook deliveries
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -371,7 +371,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
@@ -433,7 +433,7 @@ List webhook endpoints
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -452,7 +452,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
@@ -510,7 +510,7 @@ Replay a webhook delivery
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -529,7 +529,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
@@ -593,7 +593,7 @@ Rotate a webhook signing secret
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -612,7 +612,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
@@ -676,7 +676,7 @@ Send a signed test event
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -695,7 +695,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
@@ -759,7 +759,7 @@ Update a webhook endpoint
 
 ### Example
 
-* Bearer (Rivalika API key) Authentication (RivalikaApiKey):
+* Bearer Authentication (RivalikaApiKey):
 
 ```python
 import rivalika_sdk
@@ -779,7 +779,7 @@ configuration = rivalika_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (Rivalika API key): RivalikaApiKey
+# Configure Bearer authorization: RivalikaApiKey
 configuration = rivalika_sdk.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )

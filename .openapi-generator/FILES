@@ -5,7 +5,15 @@ docs/AlertsApi.md
 docs/ApplyRepricerRecommendationRequest.md
 docs/CatalogApi.md
 docs/CommercialCatalogApi.md
+docs/CommercialImportDetailEnvelope.md
+docs/CommercialImportDetailEnvelopeData.md
+docs/CommercialImportDetailEnvelopeDataRowErrorsInner.md
+docs/CommercialImportPreparedUploadEnvelope.md
+docs/CommercialImportPreparedUploadEnvelopeData.md
+docs/CommercialImportPreparedUploadEnvelopeDataUploadHeaders.md
 docs/CommercialImportsApi.md
+docs/CommercialProductLifecycleEnvelope.md
+docs/CommercialProductLifecycleEnvelopeData.md
 docs/ContextApi.md
 docs/CreateAlertRuleRequest.md
 docs/CreateCommercialImportRequest.md
@@ -23,6 +31,7 @@ docs/EstimateExportRequest.md
 docs/ExportsApi.md
 docs/ListEnvelope.md
 docs/ListEnvelopePage.md
+docs/PrepareCommercialImportUploadRequest.md
 docs/PricingApi.md
 docs/Problem.md
 docs/ReceiveRivalikaWebhookRequest.md
@@ -59,6 +68,14 @@ rivalika_sdk/models/__init__.py
 rivalika_sdk/models/accepted_envelope.py
 rivalika_sdk/models/accepted_envelope_data.py
 rivalika_sdk/models/apply_repricer_recommendation_request.py
+rivalika_sdk/models/commercial_import_detail_envelope.py
+rivalika_sdk/models/commercial_import_detail_envelope_data.py
+rivalika_sdk/models/commercial_import_detail_envelope_data_row_errors_inner.py
+rivalika_sdk/models/commercial_import_prepared_upload_envelope.py
+rivalika_sdk/models/commercial_import_prepared_upload_envelope_data.py
+rivalika_sdk/models/commercial_import_prepared_upload_envelope_data_upload_headers.py
+rivalika_sdk/models/commercial_product_lifecycle_envelope.py
+rivalika_sdk/models/commercial_product_lifecycle_envelope_data.py
 rivalika_sdk/models/create_alert_rule_request.py
 rivalika_sdk/models/create_commercial_import_request.py
 rivalika_sdk/models/create_commercial_partner_request.py
@@ -74,6 +91,7 @@ rivalika_sdk/models/delete_commercial_product_request.py
 rivalika_sdk/models/estimate_export_request.py
 rivalika_sdk/models/list_envelope.py
 rivalika_sdk/models/list_envelope_page.py
+rivalika_sdk/models/prepare_commercial_import_upload_request.py
 rivalika_sdk/models/problem.py
 rivalika_sdk/models/receive_rivalika_webhook_request.py
 rivalika_sdk/models/set_market_link_request.py
