@@ -19,8 +19,8 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://gitlab.com/zelqonworks/rivalika-sdk-python"
-Documentation = "https://gitlab.com/zelqonworks/rivalika-sdk-python/-/blob/main/README.md"
+Repository = "https://github.com/zelqonw/rivalika-sdk-python"
+Documentation = "https://github.com/zelqonw/rivalika-sdk-python/blob/main/README.md"
 
 [tool.poetry]
 requires-poetry = ">=2.0"

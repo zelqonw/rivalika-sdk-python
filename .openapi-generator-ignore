@@ -27,12 +27,14 @@ LICENSE
 SECURITY.md
 CONTRIBUTING.md
 .gitlab-ci.yml
+.github/**
 openapi-generator-config.json
 tests/**
 test/**
 rivalika_sdk/client.py
 rivalika_sdk/webhooks.py
 rivalika_sdk/__init__.py
+.gitlab-ci.yml
 .github/**
 .travis.yml
 git_push.sh
