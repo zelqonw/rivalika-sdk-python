@@ -137,3 +137,16 @@ def test_authenticated_download_carries_organization_and_bounds_bytes():
         assert sdk.download('/api/v1/report-runs/id/download') == b'original workbook bytes'
         with pytest.raises(IntegrationError, match='byte limit'):
             sdk.download('/api/v1/report-runs/id/download', max_bytes=3)
+
+
+def test_generated_import_request_serializes_validation_dependencies():
+    from rivalika_sdk import CreateCommercialImportRequest
+    request = CreateCommercialImportRequest(kind='supplier_offers', fileName='offers.csv', storageKey='imports/test', contentSha256='a'*64, sizeBytes=100, dryRun=True, validationImportIds=[ORG])
+    payload = json.loads(request.to_json())
+    assert payload['validationImportIds'] == [ORG]
+    from rivalika_sdk import ApiClient
+    import asyncio
+    async def serialize():
+        async with ApiClient() as api:
+            return api.sanitize_for_serialization(CreateCommercialImportRequest.from_dict(payload))
+    assert asyncio.run(serialize())['validationImportIds'] == [ORG]

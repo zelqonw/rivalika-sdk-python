@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **sheet_name** | **str** |  | [optional] 
 **mapping** | **Dict[str, object]** |  | [optional] 
 **auto_match_enabled** | **bool** |  | [optional] 
+**validation_import_ids** | **List[UUID]** |  | [optional] 
 **dry_run** | **bool** |  | [optional] 
 
 ## Example
