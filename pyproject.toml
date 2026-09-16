@@ -40,6 +40,12 @@ twine = ">= 6.2"
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+include = ["rivalika_sdk*"]
+
+[tool.setuptools.package-data]
+rivalika_sdk = ["py.typed"]
+
 [tool.pylint.'MESSAGES CONTROL']
 extension-pkg-whitelist = "pydantic"
 
