@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**profile** | **str** | Lossless machine profile: ZIP with integration.csv (record_json column) and metadata.json. Exact decimal strings, stable IDs, UTC timestamps and publication provenance. | [optional] 
 **dataset** | **str** |  | 
 **format** | **str** |  | 
 **locale** | **str** |  | 

@@ -25,7 +25,7 @@ jobs:
           cache: pip
       - run: python -m pip install -e . pytest mypy
       - run: pytest tests
-      - run: mypy --follow-imports=skip rivalika_sdk/client.py rivalika_sdk/webhooks.py
+      - run: mypy --follow-imports=skip rivalika_sdk/client.py rivalika_sdk/webhooks.py rivalika_sdk/integration.py
 
   build:
     name: distribution
@@ -38,6 +38,12 @@ jobs:
       - run: python -m pip install build twine
       - run: python -m build
       - run: twine check dist/*
+      - name: clean wheel install
+        run: |
+          python -m venv /tmp/rivalika-clean
+          /tmp/rivalika-clean/bin/pip install dist/*.whl
+          cd /tmp
+          /tmp/rivalika-clean/bin/python -c "from rivalika_sdk.integration import IntegrationClient; from rivalika_sdk.models.list_envelope import ListEnvelope"
 
   drift:
     name: generation drift

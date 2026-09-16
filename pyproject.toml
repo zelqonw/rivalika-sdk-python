@@ -1,6 +1,6 @@
 [project]
 name = "rivalika-sdk"
-version = "1.0.0b2"
+version = "1.0.0b3"
 description = "Official Python SDK for the Rivalika public API and signed webhooks"
 authors = [
   {name = "ZelqonWorks",email = "support@rivalika.com"},
@@ -39,6 +39,12 @@ twine = ">= 6.2"
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["rivalika_sdk*"]
+
+[tool.setuptools.package-data]
+rivalika_sdk = ["py.typed"]
 
 [tool.pylint.'MESSAGES CONTROL']
 extension-pkg-whitelist = "pydantic"
