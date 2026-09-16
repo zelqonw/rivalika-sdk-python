@@ -1,6 +1,6 @@
 # rivalika_sdk.WebhookReceiverApi
 
-All URIs are relative to *https://api.rivalika.com*
+All URIs are relative to *https://api.rivalika.md*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -21,10 +21,10 @@ import rivalika_sdk
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters

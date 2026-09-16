@@ -1,6 +1,6 @@
 [project]
 name = "rivalika-sdk"
-version = "1.0.0b2"
+version = "1.0.0b3"
 description = "Official Python SDK for the Rivalika public API and signed webhooks"
 authors = [
   {name = "ZelqonWorks",email = "support@rivalika.com"},

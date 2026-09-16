@@ -38,3 +38,5 @@ rivalika_sdk/__init__.py
 .github/**
 .travis.yml
 git_push.sh
+
+rivalika_sdk/integration.py

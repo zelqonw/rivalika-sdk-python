@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **size** | **int** |  | 
 **total** | **int** |  | 
 **has_more** | **bool** |  | 
+**next_cursor** | **UUID** |  | [optional] 
 
 ## Example
 

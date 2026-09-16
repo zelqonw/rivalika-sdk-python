@@ -19,18 +19,23 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class UpdateAlertSettingsRequest(BaseModel):
+class UpdateReportRequest(BaseModel):
     """
-    UpdateAlertSettingsRequest
+    UpdateReportRequest
     """ # noqa: E501
-    default_notify_email: Optional[StrictBool] = Field(default=None, alias="defaultNotifyEmail")
-    quiet_hours_start_utc: Optional[StrictStr] = Field(default=None, alias="quietHoursStartUtc")
-    quiet_hours_end_utc: Optional[StrictStr] = Field(default=None, alias="quietHoursEndUtc")
-    __properties: ClassVar[List[str]] = ["defaultNotifyEmail", "quietHoursStartUtc", "quietHoursEndUtc"]
+    timezone: Optional[StrictStr] = None
+    type: Optional[StrictStr] = None
+    name: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=200)]] = None
+    locale: Optional[StrictStr] = None
+    schedule: Optional[Dict[str, Any]] = None
+    is_active: Optional[StrictBool] = Field(default=None, alias="isActive")
+    configuration: Optional[Dict[str, Any]] = None
+    __properties: ClassVar[List[str]] = ["timezone", "type", "name", "locale", "schedule", "isActive", "configuration"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -50,7 +55,7 @@ class UpdateAlertSettingsRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateAlertSettingsRequest from a JSON string"""
+        """Create an instance of UpdateReportRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,21 +76,11 @@ class UpdateAlertSettingsRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if quiet_hours_start_utc (nullable) is None
-        # and model_fields_set contains the field
-        if self.quiet_hours_start_utc is None and "quiet_hours_start_utc" in self.model_fields_set:
-            _dict['quietHoursStartUtc'] = None
-
-        # set to None if quiet_hours_end_utc (nullable) is None
-        # and model_fields_set contains the field
-        if self.quiet_hours_end_utc is None and "quiet_hours_end_utc" in self.model_fields_set:
-            _dict['quietHoursEndUtc'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateAlertSettingsRequest from a dict"""
+        """Create an instance of UpdateReportRequest from a dict"""
         if obj is None:
             return None
 
@@ -93,9 +88,13 @@ class UpdateAlertSettingsRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "defaultNotifyEmail": obj.get("defaultNotifyEmail"),
-            "quietHoursStartUtc": obj.get("quietHoursStartUtc"),
-            "quietHoursEndUtc": obj.get("quietHoursEndUtc")
+            "timezone": obj.get("timezone"),
+            "type": obj.get("type"),
+            "name": obj.get("name"),
+            "locale": obj.get("locale"),
+            "schedule": obj.get("schedule"),
+            "isActive": obj.get("isActive"),
+            "configuration": obj.get("configuration")
         })
         return _obj
 

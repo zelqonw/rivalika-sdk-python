@@ -1,6 +1,6 @@
 # rivalika_sdk.AlertsApi
 
-All URIs are relative to *https://api.rivalika.com*
+All URIs are relative to *https://api.rivalika.md*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**get_alert_settings**](AlertsApi.md#get_alert_settings) | **GET** /api/v1/alert-settings | Get alert settings
 [**list_alert_events**](AlertsApi.md#list_alert_events) | **GET** /api/v1/alert-events | List alert events
 [**list_alert_rules**](AlertsApi.md#list_alert_rules) | **GET** /api/v1/alert-rules | List alert rules
+[**set_alert_rule_recipients**](AlertsApi.md#set_alert_rule_recipients) | **PUT** /api/v1/alert-rules/{alert_rule_id}/recipients | Set alert recipients
 [**update_alert_rule**](AlertsApi.md#update_alert_rule) | **PATCH** /api/v1/alert-rules/{alert_rule_id} | Update an alert rule
 [**update_alert_settings**](AlertsApi.md#update_alert_settings) | **PUT** /api/v1/alert-settings | Update alert settings
 
@@ -30,10 +31,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -113,10 +114,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -196,10 +197,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -277,10 +278,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -354,10 +355,10 @@ from rivalika_sdk.models.list_envelope import ListEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -445,10 +446,10 @@ from rivalika_sdk.models.list_envelope import ListEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -519,6 +520,92 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **set_alert_rule_recipients**
+> DataEnvelope set_alert_rule_recipients(idempotency_key, alert_rule_id, set_alert_rule_recipients_request)
+
+Set alert recipients
+
+### Example
+
+* Bearer Authentication (RivalikaApiKey):
+
+```python
+import rivalika_sdk
+from rivalika_sdk.models.data_envelope import DataEnvelope
+from rivalika_sdk.models.set_alert_rule_recipients_request import SetAlertRuleRecipientsRequest
+from rivalika_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.rivalika.md
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rivalika_sdk.Configuration(
+    host = "https://api.rivalika.md"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: RivalikaApiKey
+configuration = rivalika_sdk.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with rivalika_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rivalika_sdk.AlertsApi(api_client)
+    idempotency_key = 'idempotency_key_example' # str | Unique key retained for 24 hours. Reusing a key with another payload returns 409.
+    alert_rule_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    set_alert_rule_recipients_request = rivalika_sdk.SetAlertRuleRecipientsRequest() # SetAlertRuleRecipientsRequest | 
+
+    try:
+        # Set alert recipients
+        api_response = await api_instance.set_alert_rule_recipients(idempotency_key, alert_rule_id, set_alert_rule_recipients_request)
+        print("The response of AlertsApi->set_alert_rule_recipients:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AlertsApi->set_alert_rule_recipients: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idempotency_key** | **str**| Unique key retained for 24 hours. Reusing a key with another payload returns 409. | 
+ **alert_rule_id** | **UUID**|  | 
+ **set_alert_rule_recipients_request** | [**SetAlertRuleRecipientsRequest**](SetAlertRuleRecipientsRequest.md)|  | 
+
+### Return type
+
+[**DataEnvelope**](DataEnvelope.md)
+
+### Authorization
+
+[RivalikaApiKey](../README.md#RivalikaApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Invalid request |  -  |
+**401** | Invalid or expired API key |  -  |
+**403** | Missing required scope |  -  |
+**409** | Conflict or idempotency mismatch |  -  |
+**429** | Rate or concurrency limit exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_alert_rule**
 > DataEnvelope update_alert_rule(idempotency_key, alert_rule_id, update_alert_rule_request)
 
@@ -535,10 +622,10 @@ from rivalika_sdk.models.update_alert_rule_request import UpdateAlertRuleRequest
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -621,10 +708,10 @@ from rivalika_sdk.models.update_alert_settings_request import UpdateAlertSetting
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters

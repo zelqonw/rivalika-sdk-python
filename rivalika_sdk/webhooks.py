@@ -67,3 +67,22 @@ def parse_and_verify_webhook(
         now=now,
     )
     return cast(dict[str, Any], json.loads(payload))
+
+
+def verify_webhook_envelope(secret: str, payload: bytes, headers: Mapping[str, str], *,
+                            organization_id: str, event_types: set[str], now: int | None = None) -> dict[str, Any]:
+    """Verify signature and the versioned, organization-bound event identity."""
+    from uuid import UUID
+    event = parse_and_verify_webhook(secret, payload, headers, now=now)
+    if not isinstance(event, dict) or event.get("api_version") != "v1":
+        raise WebhookVerificationError("Unsupported webhook envelope version")
+    try:
+        identity = str(UUID(str(event.get("id", ""))))
+        organization = str(UUID(str(event.get("organization_id", ""))))
+    except ValueError as exc:
+        raise WebhookVerificationError("Invalid webhook envelope identity") from exc
+    if identity != headers.get("webhook-id") or organization != str(UUID(organization_id)):
+        raise WebhookVerificationError("Webhook organization or event identity mismatch")
+    if event.get("type") not in event_types or not isinstance(event.get("data"), dict):
+        raise WebhookVerificationError("Unsupported webhook event")
+    return event

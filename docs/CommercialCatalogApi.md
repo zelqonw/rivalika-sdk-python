@@ -1,6 +1,6 @@
 # rivalika_sdk.CommercialCatalogApi
 
-All URIs are relative to *https://api.rivalika.com*
+All URIs are relative to *https://api.rivalika.md*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -9,15 +9,22 @@ Method | HTTP request | Description
 [**create_commercial_product**](CommercialCatalogApi.md#create_commercial_product) | **POST** /api/v1/commercial/products | Create a commercial product
 [**delete_commercial_product**](CommercialCatalogApi.md#delete_commercial_product) | **DELETE** /api/v1/commercial/products/{commercial_product_id} | Delete a commercial product
 [**delete_market_link**](CommercialCatalogApi.md#delete_market_link) | **DELETE** /api/v1/commercial/products/{commercial_product_id}/market-link | Remove a market link
+[**delete_price_entry**](CommercialCatalogApi.md#delete_price_entry) | **DELETE** /api/v1/commercial/price-entries/{price_entry_id} | Remove a price entry
+[**delete_supplier_offer**](CommercialCatalogApi.md#delete_supplier_offer) | **DELETE** /api/v1/commercial/supplier-offers/{offer_id} | Remove a supplier offer
 [**get_commercial_partner**](CommercialCatalogApi.md#get_commercial_partner) | **GET** /api/v1/commercial/partners/{partner_id} | Get a commercial partner
 [**get_commercial_product**](CommercialCatalogApi.md#get_commercial_product) | **GET** /api/v1/commercial/products/{commercial_product_id} | Get a commercial product
 [**get_market_link**](CommercialCatalogApi.md#get_market_link) | **GET** /api/v1/commercial/products/{commercial_product_id}/market-link | Get a market link
 [**list_commercial_partners**](CommercialCatalogApi.md#list_commercial_partners) | **GET** /api/v1/commercial/partners | List commercial partners
 [**list_commercial_products**](CommercialCatalogApi.md#list_commercial_products) | **GET** /api/v1/commercial/products | List commercial products
+[**list_price_books**](CommercialCatalogApi.md#list_price_books) | **GET** /api/v1/commercial/price-books | List price books
+[**list_price_entries**](CommercialCatalogApi.md#list_price_entries) | **GET** /api/v1/commercial/price-entries | List price entries
+[**list_supplier_offers**](CommercialCatalogApi.md#list_supplier_offers) | **GET** /api/v1/commercial/supplier-offers | List supplier offers
 [**restore_commercial_product**](CommercialCatalogApi.md#restore_commercial_product) | **POST** /api/v1/commercial/products/{productId}/restore | Restore a commercial product
 [**set_market_link**](CommercialCatalogApi.md#set_market_link) | **PUT** /api/v1/commercial/products/{commercial_product_id}/market-link | Set a market link
 [**update_commercial_partner**](CommercialCatalogApi.md#update_commercial_partner) | **PATCH** /api/v1/commercial/partners/{partner_id} | Update a commercial partner
 [**update_commercial_product**](CommercialCatalogApi.md#update_commercial_product) | **PATCH** /api/v1/commercial/products/{commercial_product_id} | Update a commercial product
+[**update_price_book**](CommercialCatalogApi.md#update_price_book) | **PATCH** /api/v1/commercial/price-books/{price_book_id} | Update a price book
+[**update_supplier_offer**](CommercialCatalogApi.md#update_supplier_offer) | **PATCH** /api/v1/commercial/supplier-offers/{offer_id} | Update a supplier offer
 
 
 # **archive_commercial_product**
@@ -35,10 +42,10 @@ from rivalika_sdk.models.commercial_product_lifecycle_envelope import Commercial
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -120,10 +127,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -204,10 +211,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -288,10 +295,10 @@ from rivalika_sdk.models.delete_commercial_product_request import DeleteCommerci
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -373,10 +380,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -441,6 +448,172 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **delete_price_entry**
+> DataEnvelope delete_price_entry(idempotency_key, price_entry_id)
+
+Remove a price entry
+
+### Example
+
+* Bearer Authentication (RivalikaApiKey):
+
+```python
+import rivalika_sdk
+from rivalika_sdk.models.data_envelope import DataEnvelope
+from rivalika_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.rivalika.md
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rivalika_sdk.Configuration(
+    host = "https://api.rivalika.md"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: RivalikaApiKey
+configuration = rivalika_sdk.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with rivalika_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rivalika_sdk.CommercialCatalogApi(api_client)
+    idempotency_key = 'idempotency_key_example' # str | Unique key retained for 24 hours. Reusing a key with another payload returns 409.
+    price_entry_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Remove a price entry
+        api_response = await api_instance.delete_price_entry(idempotency_key, price_entry_id)
+        print("The response of CommercialCatalogApi->delete_price_entry:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CommercialCatalogApi->delete_price_entry: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idempotency_key** | **str**| Unique key retained for 24 hours. Reusing a key with another payload returns 409. | 
+ **price_entry_id** | **UUID**|  | 
+
+### Return type
+
+[**DataEnvelope**](DataEnvelope.md)
+
+### Authorization
+
+[RivalikaApiKey](../README.md#RivalikaApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Invalid request |  -  |
+**401** | Invalid or expired API key |  -  |
+**403** | Missing required scope |  -  |
+**409** | Conflict or idempotency mismatch |  -  |
+**429** | Rate or concurrency limit exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_supplier_offer**
+> DataEnvelope delete_supplier_offer(idempotency_key, offer_id)
+
+Remove a supplier offer
+
+### Example
+
+* Bearer Authentication (RivalikaApiKey):
+
+```python
+import rivalika_sdk
+from rivalika_sdk.models.data_envelope import DataEnvelope
+from rivalika_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.rivalika.md
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rivalika_sdk.Configuration(
+    host = "https://api.rivalika.md"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: RivalikaApiKey
+configuration = rivalika_sdk.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with rivalika_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rivalika_sdk.CommercialCatalogApi(api_client)
+    idempotency_key = 'idempotency_key_example' # str | Unique key retained for 24 hours. Reusing a key with another payload returns 409.
+    offer_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Remove a supplier offer
+        api_response = await api_instance.delete_supplier_offer(idempotency_key, offer_id)
+        print("The response of CommercialCatalogApi->delete_supplier_offer:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CommercialCatalogApi->delete_supplier_offer: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idempotency_key** | **str**| Unique key retained for 24 hours. Reusing a key with another payload returns 409. | 
+ **offer_id** | **UUID**|  | 
+
+### Return type
+
+[**DataEnvelope**](DataEnvelope.md)
+
+### Authorization
+
+[RivalikaApiKey](../README.md#RivalikaApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Invalid request |  -  |
+**401** | Invalid or expired API key |  -  |
+**403** | Missing required scope |  -  |
+**409** | Conflict or idempotency mismatch |  -  |
+**429** | Rate or concurrency limit exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_commercial_partner**
 > DataEnvelope get_commercial_partner(partner_id)
 
@@ -456,10 +629,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -537,10 +710,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -618,10 +791,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -699,10 +872,10 @@ from rivalika_sdk.models.list_envelope import ListEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -792,10 +965,10 @@ from rivalika_sdk.models.list_envelope import ListEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -888,6 +1061,265 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **list_price_books**
+> ListEnvelope list_price_books()
+
+List price books
+
+### Example
+
+* Bearer Authentication (RivalikaApiKey):
+
+```python
+import rivalika_sdk
+from rivalika_sdk.models.list_envelope import ListEnvelope
+from rivalika_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.rivalika.md
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rivalika_sdk.Configuration(
+    host = "https://api.rivalika.md"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: RivalikaApiKey
+configuration = rivalika_sdk.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with rivalika_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rivalika_sdk.CommercialCatalogApi(api_client)
+
+    try:
+        # List price books
+        api_response = await api_instance.list_price_books()
+        print("The response of CommercialCatalogApi->list_price_books:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CommercialCatalogApi->list_price_books: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListEnvelope**](ListEnvelope.md)
+
+### Authorization
+
+[RivalikaApiKey](../README.md#RivalikaApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Invalid request |  -  |
+**401** | Invalid or expired API key |  -  |
+**403** | Missing required scope |  -  |
+**409** | Conflict or idempotency mismatch |  -  |
+**429** | Rate or concurrency limit exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_price_entries**
+> ListEnvelope list_price_entries(page=page, size=size, search=search, product_id=product_id, price_book_id=price_book_id)
+
+List price entries
+
+### Example
+
+* Bearer Authentication (RivalikaApiKey):
+
+```python
+import rivalika_sdk
+from rivalika_sdk.models.list_envelope import ListEnvelope
+from rivalika_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.rivalika.md
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rivalika_sdk.Configuration(
+    host = "https://api.rivalika.md"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: RivalikaApiKey
+configuration = rivalika_sdk.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with rivalika_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rivalika_sdk.CommercialCatalogApi(api_client)
+    page = 56 # int |  (optional)
+    size = 56 # int |  (optional)
+    search = 'search_example' # str |  (optional)
+    product_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
+    price_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
+
+    try:
+        # List price entries
+        api_response = await api_instance.list_price_entries(page=page, size=size, search=search, product_id=product_id, price_book_id=price_book_id)
+        print("The response of CommercialCatalogApi->list_price_entries:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CommercialCatalogApi->list_price_entries: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int**|  | [optional] 
+ **size** | **int**|  | [optional] 
+ **search** | **str**|  | [optional] 
+ **product_id** | **UUID**|  | [optional] 
+ **price_book_id** | **UUID**|  | [optional] 
+
+### Return type
+
+[**ListEnvelope**](ListEnvelope.md)
+
+### Authorization
+
+[RivalikaApiKey](../README.md#RivalikaApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Invalid request |  -  |
+**401** | Invalid or expired API key |  -  |
+**403** | Missing required scope |  -  |
+**409** | Conflict or idempotency mismatch |  -  |
+**429** | Rate or concurrency limit exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_supplier_offers**
+> ListEnvelope list_supplier_offers(page=page, size=size, search=search, product_id=product_id, partner_id=partner_id, currency=currency, preferred=preferred)
+
+List supplier offers
+
+### Example
+
+* Bearer Authentication (RivalikaApiKey):
+
+```python
+import rivalika_sdk
+from rivalika_sdk.models.list_envelope import ListEnvelope
+from rivalika_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.rivalika.md
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rivalika_sdk.Configuration(
+    host = "https://api.rivalika.md"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: RivalikaApiKey
+configuration = rivalika_sdk.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with rivalika_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rivalika_sdk.CommercialCatalogApi(api_client)
+    page = 56 # int |  (optional)
+    size = 56 # int |  (optional)
+    search = 'search_example' # str |  (optional)
+    product_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
+    partner_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
+    currency = 'currency_example' # str |  (optional)
+    preferred = True # bool |  (optional)
+
+    try:
+        # List supplier offers
+        api_response = await api_instance.list_supplier_offers(page=page, size=size, search=search, product_id=product_id, partner_id=partner_id, currency=currency, preferred=preferred)
+        print("The response of CommercialCatalogApi->list_supplier_offers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CommercialCatalogApi->list_supplier_offers: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int**|  | [optional] 
+ **size** | **int**|  | [optional] 
+ **search** | **str**|  | [optional] 
+ **product_id** | **UUID**|  | [optional] 
+ **partner_id** | **UUID**|  | [optional] 
+ **currency** | **str**|  | [optional] 
+ **preferred** | **bool**|  | [optional] 
+
+### Return type
+
+[**ListEnvelope**](ListEnvelope.md)
+
+### Authorization
+
+[RivalikaApiKey](../README.md#RivalikaApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Invalid request |  -  |
+**401** | Invalid or expired API key |  -  |
+**403** | Missing required scope |  -  |
+**409** | Conflict or idempotency mismatch |  -  |
+**429** | Rate or concurrency limit exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **restore_commercial_product**
 > CommercialProductLifecycleEnvelope restore_commercial_product(idempotency_key, product_id)
 
@@ -903,10 +1335,10 @@ from rivalika_sdk.models.commercial_product_lifecycle_envelope import Commercial
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -988,10 +1420,10 @@ from rivalika_sdk.models.set_market_link_request import SetMarketLinkRequest
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1074,10 +1506,10 @@ from rivalika_sdk.models.update_commercial_partner_request import UpdateCommerci
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1160,10 +1592,10 @@ from rivalika_sdk.models.update_commercial_product_request import UpdateCommerci
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1203,6 +1635,178 @@ Name | Type | Description  | Notes
  **idempotency_key** | **str**| Unique key retained for 24 hours. Reusing a key with another payload returns 409. | 
  **commercial_product_id** | **UUID**|  | 
  **update_commercial_product_request** | [**UpdateCommercialProductRequest**](UpdateCommercialProductRequest.md)|  | 
+
+### Return type
+
+[**DataEnvelope**](DataEnvelope.md)
+
+### Authorization
+
+[RivalikaApiKey](../README.md#RivalikaApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Invalid request |  -  |
+**401** | Invalid or expired API key |  -  |
+**403** | Missing required scope |  -  |
+**409** | Conflict or idempotency mismatch |  -  |
+**429** | Rate or concurrency limit exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_price_book**
+> DataEnvelope update_price_book(idempotency_key, price_book_id, update_price_book_request)
+
+Update a price book
+
+### Example
+
+* Bearer Authentication (RivalikaApiKey):
+
+```python
+import rivalika_sdk
+from rivalika_sdk.models.data_envelope import DataEnvelope
+from rivalika_sdk.models.update_price_book_request import UpdatePriceBookRequest
+from rivalika_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.rivalika.md
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rivalika_sdk.Configuration(
+    host = "https://api.rivalika.md"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: RivalikaApiKey
+configuration = rivalika_sdk.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with rivalika_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rivalika_sdk.CommercialCatalogApi(api_client)
+    idempotency_key = 'idempotency_key_example' # str | Unique key retained for 24 hours. Reusing a key with another payload returns 409.
+    price_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    update_price_book_request = rivalika_sdk.UpdatePriceBookRequest() # UpdatePriceBookRequest | 
+
+    try:
+        # Update a price book
+        api_response = await api_instance.update_price_book(idempotency_key, price_book_id, update_price_book_request)
+        print("The response of CommercialCatalogApi->update_price_book:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CommercialCatalogApi->update_price_book: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idempotency_key** | **str**| Unique key retained for 24 hours. Reusing a key with another payload returns 409. | 
+ **price_book_id** | **UUID**|  | 
+ **update_price_book_request** | [**UpdatePriceBookRequest**](UpdatePriceBookRequest.md)|  | 
+
+### Return type
+
+[**DataEnvelope**](DataEnvelope.md)
+
+### Authorization
+
+[RivalikaApiKey](../README.md#RivalikaApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Invalid request |  -  |
+**401** | Invalid or expired API key |  -  |
+**403** | Missing required scope |  -  |
+**409** | Conflict or idempotency mismatch |  -  |
+**429** | Rate or concurrency limit exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_supplier_offer**
+> DataEnvelope update_supplier_offer(idempotency_key, offer_id, update_supplier_offer_request)
+
+Update a supplier offer
+
+### Example
+
+* Bearer Authentication (RivalikaApiKey):
+
+```python
+import rivalika_sdk
+from rivalika_sdk.models.data_envelope import DataEnvelope
+from rivalika_sdk.models.update_supplier_offer_request import UpdateSupplierOfferRequest
+from rivalika_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.rivalika.md
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rivalika_sdk.Configuration(
+    host = "https://api.rivalika.md"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: RivalikaApiKey
+configuration = rivalika_sdk.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with rivalika_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rivalika_sdk.CommercialCatalogApi(api_client)
+    idempotency_key = 'idempotency_key_example' # str | Unique key retained for 24 hours. Reusing a key with another payload returns 409.
+    offer_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    update_supplier_offer_request = rivalika_sdk.UpdateSupplierOfferRequest() # UpdateSupplierOfferRequest | 
+
+    try:
+        # Update a supplier offer
+        api_response = await api_instance.update_supplier_offer(idempotency_key, offer_id, update_supplier_offer_request)
+        print("The response of CommercialCatalogApi->update_supplier_offer:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CommercialCatalogApi->update_supplier_offer: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idempotency_key** | **str**| Unique key retained for 24 hours. Reusing a key with another payload returns 409. | 
+ **offer_id** | **UUID**|  | 
+ **update_supplier_offer_request** | [**UpdateSupplierOfferRequest**](UpdateSupplierOfferRequest.md)|  | 
 
 ### Return type
 

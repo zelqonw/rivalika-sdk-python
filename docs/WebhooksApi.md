@@ -1,6 +1,6 @@
 # rivalika_sdk.WebhooksApi
 
-All URIs are relative to *https://api.rivalika.com*
+All URIs are relative to *https://api.rivalika.md*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -32,10 +32,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -115,10 +115,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -198,10 +198,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -279,10 +279,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -360,10 +360,10 @@ from rivalika_sdk.models.list_envelope import ListEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -441,10 +441,10 @@ from rivalika_sdk.models.list_envelope import ListEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -518,10 +518,10 @@ from rivalika_sdk.models.accepted_envelope import AcceptedEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -601,10 +601,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -684,10 +684,10 @@ from rivalika_sdk.models.accepted_envelope import AcceptedEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -768,10 +768,10 @@ from rivalika_sdk.models.data_envelope import DataEnvelope
 from rivalika_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rivalika.com
+# Defining the host is optional and defaults to https://api.rivalika.md
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rivalika_sdk.Configuration(
-    host = "https://api.rivalika.com"
+    host = "https://api.rivalika.md"
 )
 
 # The client must configure the authentication and authorization parameters

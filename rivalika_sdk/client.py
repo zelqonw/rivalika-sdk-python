@@ -11,8 +11,9 @@ import httpx
 class RivalikaClient:
     """Synchronous httpx client with Rivalika API-key authentication."""
 
-    def __init__(self, api_key: str, base_url: str = "https://api.rivalika.com") -> None:
+    def __init__(self, api_key: str, base_url: str = "https://api.rivalika.md", *, transport: httpx.BaseTransport | None = None) -> None:
         self._client = httpx.Client(
+            transport=transport,
             base_url=base_url,
             headers={"Authorization": f"Bearer {api_key}"},
             timeout=30.0,
@@ -41,7 +42,7 @@ class RivalikaClient:
 class AsyncRivalikaClient:
     """Asynchronous httpx client with Rivalika API-key authentication."""
 
-    def __init__(self, api_key: str, base_url: str = "https://api.rivalika.com") -> None:
+    def __init__(self, api_key: str, base_url: str = "https://api.rivalika.md") -> None:
         self._client = httpx.AsyncClient(
             base_url=base_url,
             headers={"Authorization": f"Bearer {api_key}"},

@@ -23,14 +23,17 @@ from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class UpdateAlertSettingsRequest(BaseModel):
+class UpdatePriceBookRequest(BaseModel):
     """
-    UpdateAlertSettingsRequest
+    UpdatePriceBookRequest
     """ # noqa: E501
-    default_notify_email: Optional[StrictBool] = Field(default=None, alias="defaultNotifyEmail")
-    quiet_hours_start_utc: Optional[StrictStr] = Field(default=None, alias="quietHoursStartUtc")
-    quiet_hours_end_utc: Optional[StrictStr] = Field(default=None, alias="quietHoursEndUtc")
-    __properties: ClassVar[List[str]] = ["defaultNotifyEmail", "quietHoursStartUtc", "quietHoursEndUtc"]
+    name: Optional[StrictStr] = None
+    description: Optional[StrictStr] = None
+    kind: Optional[StrictStr] = None
+    currency: Optional[StrictStr] = None
+    is_default: Optional[StrictBool] = Field(default=None, alias="isDefault")
+    active: Optional[StrictBool] = None
+    __properties: ClassVar[List[str]] = ["name", "description", "kind", "currency", "isDefault", "active"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -50,7 +53,7 @@ class UpdateAlertSettingsRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateAlertSettingsRequest from a JSON string"""
+        """Create an instance of UpdatePriceBookRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,21 +74,11 @@ class UpdateAlertSettingsRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if quiet_hours_start_utc (nullable) is None
-        # and model_fields_set contains the field
-        if self.quiet_hours_start_utc is None and "quiet_hours_start_utc" in self.model_fields_set:
-            _dict['quietHoursStartUtc'] = None
-
-        # set to None if quiet_hours_end_utc (nullable) is None
-        # and model_fields_set contains the field
-        if self.quiet_hours_end_utc is None and "quiet_hours_end_utc" in self.model_fields_set:
-            _dict['quietHoursEndUtc'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateAlertSettingsRequest from a dict"""
+        """Create an instance of UpdatePriceBookRequest from a dict"""
         if obj is None:
             return None
 
@@ -93,9 +86,12 @@ class UpdateAlertSettingsRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "defaultNotifyEmail": obj.get("defaultNotifyEmail"),
-            "quietHoursStartUtc": obj.get("quietHoursStartUtc"),
-            "quietHoursEndUtc": obj.get("quietHoursEndUtc")
+            "name": obj.get("name"),
+            "description": obj.get("description"),
+            "kind": obj.get("kind"),
+            "currency": obj.get("currency"),
+            "isDefault": obj.get("isDefault"),
+            "active": obj.get("active")
         })
         return _obj
 

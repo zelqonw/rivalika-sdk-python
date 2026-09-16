@@ -56,13 +56,13 @@ def test_serializes_prepare_upload_with_authentication_and_idempotency() -> None
     )
 
     assert method == "POST"
-    assert url == "https://api.rivalika.com/api/v1/commercial/imports/prepare-upload"
+    assert url == "https://api.rivalika.md/api/v1/commercial/imports/prepare-upload"
     assert headers == {
         "Accept": "application/json",
         "Content-Type": "application/json",
         "Idempotency-Key": IDEMPOTENCY_KEY,
         "Authorization": f"Bearer {API_KEY}",
-        "User-Agent": "OpenAPI-Generator/1.0.0b2/python",
+        "User-Agent": "OpenAPI-Generator/1.0.0b3/python",
     }
     assert body == {
         "fileName": "products.csv",
@@ -86,11 +86,11 @@ def test_serializes_authenticated_import_detail_request() -> None:
     )
 
     assert method == "GET"
-    assert url == f"https://api.rivalika.com/api/v1/commercial/imports/{IMPORT_ID}"
+    assert url == f"https://api.rivalika.md/api/v1/commercial/imports/{IMPORT_ID}"
     assert headers == {
         "Accept": "application/json",
         "Authorization": f"Bearer {API_KEY}",
-        "User-Agent": "OpenAPI-Generator/1.0.0b2/python",
+        "User-Agent": "OpenAPI-Generator/1.0.0b3/python",
     }
     assert body is None
     assert post_params == []
@@ -177,12 +177,12 @@ def test_serializes_archive_and_restore_with_authentication_and_idempotency() ->
         )
 
         assert method == "POST"
-        assert url == f"https://api.rivalika.com/api/v1/commercial/products/{PRODUCT_ID}/{action}"
+        assert url == f"https://api.rivalika.md/api/v1/commercial/products/{PRODUCT_ID}/{action}"
         assert headers == {
             "Accept": "application/json",
             "Idempotency-Key": IDEMPOTENCY_KEY,
             "Authorization": f"Bearer {API_KEY}",
-            "User-Agent": "OpenAPI-Generator/1.0.0b2/python",
+            "User-Agent": "OpenAPI-Generator/1.0.0b3/python",
         }
         assert body is None
         assert post_params == []
