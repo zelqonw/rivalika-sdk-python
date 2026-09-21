@@ -16,7 +16,8 @@ concurrency:
 jobs:
   check:
     name: tests and types
-    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: [self-hosted, rivalika, light]
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -29,7 +30,8 @@ jobs:
 
   build:
     name: distribution
-    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: [self-hosted, rivalika, light]
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -40,14 +42,17 @@ jobs:
       - run: twine check dist/*
       - name: clean wheel install
         run: |
-          python -m venv /tmp/rivalika-clean
-          /tmp/rivalika-clean/bin/pip install dist/*.whl
-          cd /tmp
-          /tmp/rivalika-clean/bin/python -c "from rivalika_sdk.integration import IntegrationClient; from rivalika_sdk.models.list_envelope import ListEnvelope"
+          CLEAN_VENV="$RUNNER_TEMP/rivalika-clean"
+          rm -rf "$CLEAN_VENV"
+          python -m venv "$CLEAN_VENV"
+          "$CLEAN_VENV/bin/pip" install dist/*.whl
+          cd "$RUNNER_TEMP"
+          "$CLEAN_VENV/bin/python" -c "from rivalika_sdk.integration import IntegrationClient; from rivalika_sdk.models.list_envelope import ListEnvelope"
 
   drift:
     name: generation drift
-    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: [self-hosted, rivalika, heavy]
     # The SDK is generated, not written. If the committed tree and a fresh
     # generation from the same spec disagree, someone hand-edited generated
     # code and the next sync would silently revert them.
