@@ -8,6 +8,12 @@ name: Publish
 on:
   push:
     tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing validated release tag to publish or retry
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -15,15 +21,26 @@ permissions:
 jobs:
   publish:
     name: PyPI
-    runs-on: [self-hosted, rivalika, light]
+    # Registry provenance requires a GitHub-hosted signing environment.
+    runs-on: ubuntu-latest
     environment: release
+    env:
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
     permissions:
       contents: read
       # Trusted publishing: PyPI mints a short-lived credential from this
       # token. There is no API token to leak or rotate.
       id-token: write
     steps:
+      - name: Validate release reference
+        run: |
+          case "$RELEASE_TAG" in
+            v[0-9]*) ;;
+            *) echo "An existing version tag is required" >&2; exit 1 ;;
+          esac
       - uses: actions/checkout@v6
+        with:
+          ref: refs/tags/${{ inputs.tag || github.ref_name }}
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
@@ -32,10 +49,10 @@ jobs:
         # A tag that disagrees with pyproject.toml publishes a version nobody
         # asked for, under a name the tag does not describe.
         run: |
-          TAG="${GITHUB_REF_NAME#v}"
+          TAG="${RELEASE_TAG#v}"
           META="$(python -c "import tomllib;print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")"
           if [ "$TAG" != "$META" ]; then
-            echo "tag ${GITHUB_REF_NAME} does not match pyproject.toml ${META}" >&2
+            echo "tag ${RELEASE_TAG} does not match pyproject.toml ${META}" >&2
             exit 1
           fi
       - run: python -m build
@@ -61,7 +78,7 @@ jobs:
       - name: Write sanitized outcome
         env:
           NOTIFY_KIND: publish
-          NOTIFY_VERSION: ${{ github.ref_name }}
+          NOTIFY_VERSION: ${{ inputs.tag || github.ref_name }}
           NOTIFY_RELEASE: ${{ github.sha }}
           NOTIFY_OUTCOME: ${{ needs.publish.result == 'success' && 'published' || needs.publish.result == 'failure' && 'failed' || 'unknown' }}
           NOTIFY_STAGE: ${{ needs.publish.result == 'success' && 'complete' || 'package publication' }}
