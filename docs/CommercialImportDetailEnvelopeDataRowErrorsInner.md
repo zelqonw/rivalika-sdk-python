@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **row_number** | **int** |  | 
 **message** | **str** |  | 
+**code** | **str** |  | 
+**params** | **Dict[str, str]** |  | 
 
 ## Example
 

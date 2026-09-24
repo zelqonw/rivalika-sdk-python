@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -30,7 +30,16 @@ class CommercialImportDetailEnvelopeDataRowErrorsInner(BaseModel):
     """ # noqa: E501
     row_number: Annotated[int, Field(strict=True, gt=0)]
     message: Annotated[str, Field(strict=True, max_length=160)]
-    __properties: ClassVar[List[str]] = ["row_number", "message"]
+    code: StrictStr
+    params: Dict[str, StrictStr]
+    __properties: ClassVar[List[str]] = ["row_number", "message", "code", "params"]
+
+    @field_validator('code')
+    def code_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['field_required', 'field_not_integer', 'field_not_amount', 'field_not_boolean', 'field_not_date', 'currency_unsupported', 'price_book_kind_invalid', 'product_not_found', 'parent_not_found', 'partner_not_found', 'roles_invalid', 'attributes_invalid_json', 'attributes_not_object', 'attributes_too_many', 'valid_from_after_valid_to', 'variant_cycle', 'source_owned_by_other', 'source_identity_other_product', 'source_identity_incomplete', 'tax_basis_invalid', 'vat_rate_invalid', 'unknown']):
+            raise ValueError("must be one of enum values ('field_required', 'field_not_integer', 'field_not_amount', 'field_not_boolean', 'field_not_date', 'currency_unsupported', 'price_book_kind_invalid', 'product_not_found', 'parent_not_found', 'partner_not_found', 'roles_invalid', 'attributes_invalid_json', 'attributes_not_object', 'attributes_too_many', 'valid_from_after_valid_to', 'variant_cycle', 'source_owned_by_other', 'source_identity_other_product', 'source_identity_incomplete', 'tax_basis_invalid', 'vat_rate_invalid', 'unknown')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -84,7 +93,9 @@ class CommercialImportDetailEnvelopeDataRowErrorsInner(BaseModel):
 
         _obj = cls.model_validate({
             "row_number": obj.get("row_number"),
-            "message": obj.get("message")
+            "message": obj.get("message"),
+            "code": obj.get("code"),
+            "params": obj.get("params")
         })
         return _obj
 

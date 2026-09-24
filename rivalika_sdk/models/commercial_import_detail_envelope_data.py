@@ -43,13 +43,15 @@ class CommercialImportDetailEnvelopeData(BaseModel):
     last_processed_row: Annotated[int, Field(strict=True, ge=0)]
     has_error_report: StrictBool
     failure_summary: Optional[Annotated[str, Field(strict=True, max_length=160)]]
+    error_code: Optional[StrictStr]
+    error_params: Dict[str, StrictStr]
     row_errors: Annotated[List[CommercialImportDetailEnvelopeDataRowErrorsInner], Field(max_length=100)]
     row_errors_truncated: StrictBool
     started_at: Optional[datetime]
     completed_at: Optional[datetime]
     created_at: datetime
     updated_at: datetime
-    __properties: ClassVar[List[str]] = ["id", "kind", "status", "file_name", "dry_run", "sheet_name", "total_rows", "imported_rows", "rejected_rows", "last_processed_row", "has_error_report", "failure_summary", "row_errors", "row_errors_truncated", "started_at", "completed_at", "created_at", "updated_at"]
+    __properties: ClassVar[List[str]] = ["id", "kind", "status", "file_name", "dry_run", "sheet_name", "total_rows", "imported_rows", "rejected_rows", "last_processed_row", "has_error_report", "failure_summary", "error_code", "error_params", "row_errors", "row_errors_truncated", "started_at", "completed_at", "created_at", "updated_at"]
 
     @field_validator('kind')
     def kind_validate_enum(cls, value):
@@ -63,6 +65,16 @@ class CommercialImportDetailEnvelopeData(BaseModel):
         """Validates the enum"""
         if value not in set(['queued', 'processing', 'completed', 'failed', 'cancelled']):
             raise ValueError("must be one of enum values ('queued', 'processing', 'completed', 'failed', 'cancelled')")
+        return value
+
+    @field_validator('error_code')
+    def error_code_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['file_too_large', 'unsupported_file_type', 'invalid_utf8', 'null_bytes', 'xlsx_archive_invalid', 'xlsx_expansion', 'formulas_not_allowed', 'worksheet_unavailable', 'row_limit', 'column_limit', 'no_headers', 'duplicate_columns', 'unsupported_columns', 'missing_required_columns', 'mapped_source_missing', 'unsupported_target_column', 'size_mismatch', 'sha_mismatch', 'legacy_identity_unverified', 'storage_reference_invalid', 'runtime_unavailable', 'unknown']):
+            raise ValueError("must be one of enum values ('file_too_large', 'unsupported_file_type', 'invalid_utf8', 'null_bytes', 'xlsx_archive_invalid', 'xlsx_expansion', 'formulas_not_allowed', 'worksheet_unavailable', 'row_limit', 'column_limit', 'no_headers', 'duplicate_columns', 'unsupported_columns', 'missing_required_columns', 'mapped_source_missing', 'unsupported_target_column', 'size_mismatch', 'sha_mismatch', 'legacy_identity_unverified', 'storage_reference_invalid', 'runtime_unavailable', 'unknown')")
         return value
 
     model_config = ConfigDict(
@@ -121,6 +133,11 @@ class CommercialImportDetailEnvelopeData(BaseModel):
         if self.failure_summary is None and "failure_summary" in self.model_fields_set:
             _dict['failure_summary'] = None
 
+        # set to None if error_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.error_code is None and "error_code" in self.model_fields_set:
+            _dict['error_code'] = None
+
         # set to None if started_at (nullable) is None
         # and model_fields_set contains the field
         if self.started_at is None and "started_at" in self.model_fields_set:
@@ -155,6 +172,8 @@ class CommercialImportDetailEnvelopeData(BaseModel):
             "last_processed_row": obj.get("last_processed_row"),
             "has_error_report": obj.get("has_error_report"),
             "failure_summary": obj.get("failure_summary"),
+            "error_code": obj.get("error_code"),
+            "error_params": obj.get("error_params"),
             "row_errors": [CommercialImportDetailEnvelopeDataRowErrorsInner.from_dict(_item) for _item in obj["row_errors"]] if obj.get("row_errors") is not None else None,
             "row_errors_truncated": obj.get("row_errors_truncated"),
             "started_at": obj.get("started_at"),

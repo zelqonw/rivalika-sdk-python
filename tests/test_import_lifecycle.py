@@ -62,7 +62,7 @@ def test_serializes_prepare_upload_with_authentication_and_idempotency() -> None
         "Content-Type": "application/json",
         "Idempotency-Key": IDEMPOTENCY_KEY,
         "Authorization": f"Bearer {API_KEY}",
-        "User-Agent": "OpenAPI-Generator/1.0.0b3/python",
+        "User-Agent": "OpenAPI-Generator/1.0.0b4/python",
     }
     assert body == {
         "fileName": "products.csv",
@@ -90,7 +90,7 @@ def test_serializes_authenticated_import_detail_request() -> None:
     assert headers == {
         "Accept": "application/json",
         "Authorization": f"Bearer {API_KEY}",
-        "User-Agent": "OpenAPI-Generator/1.0.0b3/python",
+        "User-Agent": "OpenAPI-Generator/1.0.0b4/python",
     }
     assert body is None
     assert post_params == []
@@ -136,7 +136,9 @@ def test_round_trips_bounded_import_detail_response() -> None:
             "last_processed_row": 2,
             "has_error_report": True,
             "failure_summary": "One row needs attention",
-            "row_errors": [{"row_number": 2, "message": "Missing SKU"}],
+            "error_code": "missing_required_columns",
+            "error_params": {"columns": "internal_sku"},
+            "row_errors": [{"row_number": 2, "message": "Missing SKU", "code": "field_required", "params": {"field": "internal_sku"}}],
             "row_errors_truncated": False,
             "started_at": "2026-09-02T12:00:00Z",
             "completed_at": "2026-09-02T12:01:00Z",
@@ -182,7 +184,7 @@ def test_serializes_archive_and_restore_with_authentication_and_idempotency() ->
             "Accept": "application/json",
             "Idempotency-Key": IDEMPOTENCY_KEY,
             "Authorization": f"Bearer {API_KEY}",
-            "User-Agent": "OpenAPI-Generator/1.0.0b3/python",
+            "User-Agent": "OpenAPI-Generator/1.0.0b4/python",
         }
         assert body is None
         assert post_params == []

@@ -4,9 +4,7 @@ Official Python client for Rivalika's `/api/v1` public API, generated from the
 committed OpenAPI 3.1 contract with OpenAPI Generator 7.22.0. The package also
 includes maintained sync/async HTTP helpers and signed-webhook verification.
 
-The beta package name is `rivalika-sdk` and its first approved release will be
-`1.0.0b3`. Registry publication is a separate release approval; until that tag
-is published, clone this repository and install it with `python -m pip install -e .`.
+This source builds `rivalika-sdk==1.0.0b4` (beta). It includes structured import failure and row-error diagnostics from the current beta.3 API contract. Package versions are independent of the API contract version. Registry publication is performed by the tagged release workflow.
 
 Python 3.9 or newer is supported.
 
