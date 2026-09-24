@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **last_processed_row** | **int** |  | 
 **has_error_report** | **bool** |  | 
 **failure_summary** | **str** |  | 
+**error_code** | **str** |  | 
+**error_params** | **Dict[str, str]** |  | 
 **row_errors** | [**List[CommercialImportDetailEnvelopeDataRowErrorsInner]**](CommercialImportDetailEnvelopeDataRowErrorsInner.md) |  | 
 **row_errors_truncated** | **bool** |  | 
 **started_at** | **datetime** |  | 
