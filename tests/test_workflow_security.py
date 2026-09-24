@@ -26,7 +26,7 @@ def test_only_registry_publication_uses_a_hosted_signing_runner() -> None:
     assert "environment: release" in publish
     assert "id-token: write" in publish
     assert "ref: refs/tags/" in publish
-    assert "github.ref == 'refs/heads/main'" in publish
+    assert "startsWith(github.ref, 'refs/tags/v')" in publish
     assert 'TAG="${RELEASE_TAG#v}"' in publish
     assert 'if [ "$TAG" != "$META" ]' in publish
 
