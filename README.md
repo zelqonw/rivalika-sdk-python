@@ -57,7 +57,7 @@ pytest tests
 mypy --follow-imports=skip rivalika_sdk/client.py rivalika_sdk/webhooks.py
 python -m build
 twine check dist/*
-docker run --rm -w /local -v "$PWD:/local" \
+docker run --rm --user "$(id -u):$(id -g)" -w /local -v "$PWD:/local" \
   openapitools/openapi-generator-cli:v7.22.0 \
   generate -c openapi-generator-config.json
 git diff --exit-code
