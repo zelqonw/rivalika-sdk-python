@@ -15,7 +15,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr
+from pydantic import Field, StrictBool, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
 from uuid import UUID
@@ -859,8 +859,10 @@ class CatalogApi:
         change_type: Optional[StrictStr] = None,
         time_range: Optional[StrictStr] = None,
         discounted: Optional[StrictBool] = None,
+        discount_check: Annotated[Optional[StrictStr], Field(description="Products with a current offer whose advertised previous price was checked against the lowest price that store charged in the 30 days before the discount: real, inflated (above that low) or insufficientHistory.")] = None,
         include_offers: Optional[StrictBool] = None,
         locale: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=5)]] = None,
+        spec_filters: Annotated[Optional[StrictStr], Field(description="JSON array of characteristic filters on the typed attributes of the one category in categoryIds, e.g. [{\"key\":\"ram_gb\",\"min\":16},{\"key\":\"panel_type\",\"values\":[\"ips\"]},{\"key\":\"smart_tv\",\"boolean\":true}].")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -895,10 +897,14 @@ class CatalogApi:
         :type time_range: str
         :param discounted:
         :type discounted: bool
+        :param discount_check: Products with a current offer whose advertised previous price was checked against the lowest price that store charged in the 30 days before the discount: real, inflated (above that low) or insufficientHistory.
+        :type discount_check: str
         :param include_offers:
         :type include_offers: bool
         :param locale:
         :type locale: str
+        :param spec_filters: JSON array of characteristic filters on the typed attributes of the one category in categoryIds, e.g. [{\"key\":\"ram_gb\",\"min\":16},{\"key\":\"panel_type\",\"values\":[\"ips\"]},{\"key\":\"smart_tv\",\"boolean\":true}].
+        :type spec_filters: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -931,8 +937,10 @@ class CatalogApi:
             change_type=change_type,
             time_range=time_range,
             discounted=discounted,
+            discount_check=discount_check,
             include_offers=include_offers,
             locale=locale,
+            spec_filters=spec_filters,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -970,8 +978,10 @@ class CatalogApi:
         change_type: Optional[StrictStr] = None,
         time_range: Optional[StrictStr] = None,
         discounted: Optional[StrictBool] = None,
+        discount_check: Annotated[Optional[StrictStr], Field(description="Products with a current offer whose advertised previous price was checked against the lowest price that store charged in the 30 days before the discount: real, inflated (above that low) or insufficientHistory.")] = None,
         include_offers: Optional[StrictBool] = None,
         locale: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=5)]] = None,
+        spec_filters: Annotated[Optional[StrictStr], Field(description="JSON array of characteristic filters on the typed attributes of the one category in categoryIds, e.g. [{\"key\":\"ram_gb\",\"min\":16},{\"key\":\"panel_type\",\"values\":[\"ips\"]},{\"key\":\"smart_tv\",\"boolean\":true}].")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1006,10 +1016,14 @@ class CatalogApi:
         :type time_range: str
         :param discounted:
         :type discounted: bool
+        :param discount_check: Products with a current offer whose advertised previous price was checked against the lowest price that store charged in the 30 days before the discount: real, inflated (above that low) or insufficientHistory.
+        :type discount_check: str
         :param include_offers:
         :type include_offers: bool
         :param locale:
         :type locale: str
+        :param spec_filters: JSON array of characteristic filters on the typed attributes of the one category in categoryIds, e.g. [{\"key\":\"ram_gb\",\"min\":16},{\"key\":\"panel_type\",\"values\":[\"ips\"]},{\"key\":\"smart_tv\",\"boolean\":true}].
+        :type spec_filters: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1042,8 +1056,10 @@ class CatalogApi:
             change_type=change_type,
             time_range=time_range,
             discounted=discounted,
+            discount_check=discount_check,
             include_offers=include_offers,
             locale=locale,
+            spec_filters=spec_filters,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1081,8 +1097,10 @@ class CatalogApi:
         change_type: Optional[StrictStr] = None,
         time_range: Optional[StrictStr] = None,
         discounted: Optional[StrictBool] = None,
+        discount_check: Annotated[Optional[StrictStr], Field(description="Products with a current offer whose advertised previous price was checked against the lowest price that store charged in the 30 days before the discount: real, inflated (above that low) or insufficientHistory.")] = None,
         include_offers: Optional[StrictBool] = None,
         locale: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=5)]] = None,
+        spec_filters: Annotated[Optional[StrictStr], Field(description="JSON array of characteristic filters on the typed attributes of the one category in categoryIds, e.g. [{\"key\":\"ram_gb\",\"min\":16},{\"key\":\"panel_type\",\"values\":[\"ips\"]},{\"key\":\"smart_tv\",\"boolean\":true}].")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1117,10 +1135,14 @@ class CatalogApi:
         :type time_range: str
         :param discounted:
         :type discounted: bool
+        :param discount_check: Products with a current offer whose advertised previous price was checked against the lowest price that store charged in the 30 days before the discount: real, inflated (above that low) or insufficientHistory.
+        :type discount_check: str
         :param include_offers:
         :type include_offers: bool
         :param locale:
         :type locale: str
+        :param spec_filters: JSON array of characteristic filters on the typed attributes of the one category in categoryIds, e.g. [{\"key\":\"ram_gb\",\"min\":16},{\"key\":\"panel_type\",\"values\":[\"ips\"]},{\"key\":\"smart_tv\",\"boolean\":true}].
+        :type spec_filters: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1153,8 +1175,10 @@ class CatalogApi:
             change_type=change_type,
             time_range=time_range,
             discounted=discounted,
+            discount_check=discount_check,
             include_offers=include_offers,
             locale=locale,
+            spec_filters=spec_filters,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1187,8 +1211,10 @@ class CatalogApi:
         change_type,
         time_range,
         discounted,
+        discount_check,
         include_offers,
         locale,
+        spec_filters,
         _request_auth,
         _content_type,
         _headers,
@@ -1250,6 +1276,10 @@ class CatalogApi:
             
             _query_params.append(('discounted', discounted))
             
+        if discount_check is not None:
+            
+            _query_params.append(('discountCheck', discount_check))
+            
         if include_offers is not None:
             
             _query_params.append(('includeOffers', include_offers))
@@ -1257,6 +1287,10 @@ class CatalogApi:
         if locale is not None:
             
             _query_params.append(('locale', locale))
+            
+        if spec_filters is not None:
+            
+            _query_params.append(('specFilters', spec_filters))
             
         # process the header parameters
         # process the form parameters

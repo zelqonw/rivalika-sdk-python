@@ -16,6 +16,10 @@ Name | Type | Description | Notes
 **rejected_rows** | **int** |  | 
 **last_processed_row** | **int** |  | 
 **has_error_report** | **bool** |  | 
+**checked_import_id** | **UUID** | The validation run this import applies, when it was started from one. | 
+**applied_import_id** | **UUID** | For a validation run: the import that applied it, once one exists. | 
+**expires_at** | **datetime** | When the source file and error report are purged. | 
+**size_bytes** | **int** |  | 
 **failure_summary** | **str** |  | 
 **error_code** | **str** |  | 
 **error_params** | **Dict[str, str]** |  | 

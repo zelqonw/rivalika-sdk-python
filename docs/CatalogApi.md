@@ -250,7 +250,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_products**
-> ListEnvelope list_products(page=page, size=size, search=search, store_ids=store_ids, category_ids=category_ids, brand_ids=brand_ids, change_type=change_type, time_range=time_range, discounted=discounted, include_offers=include_offers, locale=locale)
+> ListEnvelope list_products(page=page, size=size, search=search, store_ids=store_ids, category_ids=category_ids, brand_ids=brand_ids, change_type=change_type, time_range=time_range, discounted=discounted, discount_check=discount_check, include_offers=include_offers, locale=locale, spec_filters=spec_filters)
 
 List published products
 
@@ -293,12 +293,14 @@ async with rivalika_sdk.ApiClient(configuration) as api_client:
     change_type = 'change_type_example' # str |  (optional)
     time_range = 'time_range_example' # str |  (optional)
     discounted = True # bool |  (optional)
+    discount_check = 'discount_check_example' # str | Products with a current offer whose advertised previous price was checked against the lowest price that store charged in the 30 days before the discount: real, inflated (above that low) or insufficientHistory. (optional)
     include_offers = True # bool |  (optional)
     locale = 'locale_example' # str |  (optional)
+    spec_filters = 'spec_filters_example' # str | JSON array of characteristic filters on the typed attributes of the one category in categoryIds, e.g. [{\"key\":\"ram_gb\",\"min\":16},{\"key\":\"panel_type\",\"values\":[\"ips\"]},{\"key\":\"smart_tv\",\"boolean\":true}]. (optional)
 
     try:
         # List published products
-        api_response = await api_instance.list_products(page=page, size=size, search=search, store_ids=store_ids, category_ids=category_ids, brand_ids=brand_ids, change_type=change_type, time_range=time_range, discounted=discounted, include_offers=include_offers, locale=locale)
+        api_response = await api_instance.list_products(page=page, size=size, search=search, store_ids=store_ids, category_ids=category_ids, brand_ids=brand_ids, change_type=change_type, time_range=time_range, discounted=discounted, discount_check=discount_check, include_offers=include_offers, locale=locale, spec_filters=spec_filters)
         print("The response of CatalogApi->list_products:\n")
         pprint(api_response)
     except Exception as e:
@@ -321,8 +323,10 @@ Name | Type | Description  | Notes
  **change_type** | **str**|  | [optional] 
  **time_range** | **str**|  | [optional] 
  **discounted** | **bool**|  | [optional] 
+ **discount_check** | **str**| Products with a current offer whose advertised previous price was checked against the lowest price that store charged in the 30 days before the discount: real, inflated (above that low) or insufficientHistory. | [optional] 
  **include_offers** | **bool**|  | [optional] 
  **locale** | **str**|  | [optional] 
+ **spec_filters** | **str**| JSON array of characteristic filters on the typed attributes of the one category in categoryIds, e.g. [{\&quot;key\&quot;:\&quot;ram_gb\&quot;,\&quot;min\&quot;:16},{\&quot;key\&quot;:\&quot;panel_type\&quot;,\&quot;values\&quot;:[\&quot;ips\&quot;]},{\&quot;key\&quot;:\&quot;smart_tv\&quot;,\&quot;boolean\&quot;:true}]. | [optional] 
 
 ### Return type
 
