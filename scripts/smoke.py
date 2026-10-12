@@ -17,6 +17,16 @@ from typing import Any, Awaitable, Callable
 import rivalika_sdk as sdk
 
 
+async def import_detail(client: sdk.ApiClient) -> Any:
+    """A typed detail model, not a list of plain records: catches a changed
+    required field or format that list envelopes would let through."""
+    imports = sdk.CommercialImportsApi(client)
+    listed = (await imports.list_commercial_imports(size=1)).data
+    if not listed:
+        return sdk.DataEnvelope(data={})
+    return await imports.get_commercial_import(listed[0]["id"])
+
+
 async def main() -> int:
     base_url = os.environ.get("RIVALIKA_BASE_URL", "https://api.rivalika.md").rstrip("/")
     api_key = os.environ.get("RIVALIKA_API_KEY")
@@ -33,6 +43,7 @@ async def main() -> int:
             ("alert rules", lambda: sdk.AlertsApi(client).list_alert_rules(size=5)),
             ("reports", lambda: sdk.ReportsApi(client).list_reports(size=5)),
             ("webhook endpoints", lambda: sdk.WebhooksApi(client).list_webhook_endpoints()),
+            ("commercial import detail", lambda: import_detail(client)),
         ]
         # Operations newer than some generated trees: checked when present.
         if hasattr(exports, "list_export_schedules"):
@@ -44,7 +55,11 @@ async def main() -> int:
                 data = (await call()).data
                 if data is None:
                     raise ValueError("response has no data envelope")
-                detail = f"{len(data)} item(s)" if isinstance(data, list) else f"{len(data)} field(s)"
+                if isinstance(data, list):
+                    detail = f"{len(data)} item(s)"
+                else:
+                    fields = data.model_dump(exclude_unset=True) if hasattr(data, "model_dump") else data
+                    detail = f"{len(fields)} field(s)"
                 print(f"ok    {name}: {detail}")
             except Exception as error:  # noqa: BLE001 - report every check, then fail once
                 failed += 1
