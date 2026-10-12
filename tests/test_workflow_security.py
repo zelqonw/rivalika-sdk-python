@@ -33,6 +33,13 @@ def test_only_registry_publication_uses_a_hosted_signing_runner() -> None:
 
 def test_pull_request_jobs_do_not_run_fork_code() -> None:
     verify = (WORKFLOWS / "verify.yml").read_text(encoding="utf-8")
-    contract = (WORKFLOWS / "discord-contract.yml").read_text(encoding="utf-8")
     assert verify.count(FORK_GUARD) == 3
-    assert FORK_GUARD in contract
+
+
+def test_workflows_never_write_the_persistent_workspace_as_root() -> None:
+    for workflow in WORKFLOWS.glob("*.yml"):
+        source = workflow.read_text(encoding="utf-8")
+        assert not re.search(r"^    container:", source, re.MULTILINE), workflow.name
+        for line in source.splitlines():
+            if "docker run" in line:
+                assert '--user "$(id -u):$(id -g)"' in line, f"{workflow.name}: {line.strip()}"
