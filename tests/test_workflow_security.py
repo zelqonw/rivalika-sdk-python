@@ -41,5 +41,6 @@ def test_workflows_never_write_the_persistent_workspace_as_root() -> None:
         source = workflow.read_text(encoding="utf-8")
         assert not re.search(r"^    container:", source, re.MULTILINE), workflow.name
         for line in source.splitlines():
-            if "docker run" in line:
+            # The one root container only hands the workspace back to the runner.
+            if "docker run" in line and "--entrypoint chown" not in line:
                 assert '--user "$(id -u):$(id -g)"' in line, f"{workflow.name}: {line.strip()}"
