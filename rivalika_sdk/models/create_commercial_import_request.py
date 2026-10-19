@@ -51,16 +51,6 @@ class CreateCommercialImportRequest(BaseModel):
             raise ValueError(r"must validate the regular expression /^[0-9a-f]{64}$/")
         return value
 
-    @field_validator('auto_match_enabled')
-    def auto_match_enabled_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['false']):
-            raise ValueError("must be one of enum values ('false')")
-        return value
-
     model_config = ConfigDict(
         validate_by_name=True,
         validate_by_alias=True,

@@ -42,6 +42,10 @@ class CommercialImportDetailEnvelopeData(BaseModel):
     rejected_rows: Annotated[int, Field(strict=True, ge=0)]
     last_processed_row: Annotated[int, Field(strict=True, ge=0)]
     has_error_report: StrictBool
+    checked_import_id: Optional[UUID] = Field(description="The validation run this import applies, when it was started from one.")
+    applied_import_id: Optional[UUID] = Field(description="For a validation run: the import that applied it, once one exists.")
+    expires_at: datetime = Field(description="When the source file and error report are purged.")
+    size_bytes: Optional[Annotated[int, Field(strict=True, gt=0)]]
     failure_summary: Optional[Annotated[str, Field(strict=True, max_length=160)]]
     error_code: Optional[StrictStr]
     error_params: Dict[str, StrictStr]
@@ -51,7 +55,7 @@ class CommercialImportDetailEnvelopeData(BaseModel):
     completed_at: Optional[datetime]
     created_at: datetime
     updated_at: datetime
-    __properties: ClassVar[List[str]] = ["id", "kind", "status", "file_name", "dry_run", "sheet_name", "total_rows", "imported_rows", "rejected_rows", "last_processed_row", "has_error_report", "failure_summary", "error_code", "error_params", "row_errors", "row_errors_truncated", "started_at", "completed_at", "created_at", "updated_at"]
+    __properties: ClassVar[List[str]] = ["id", "kind", "status", "file_name", "dry_run", "sheet_name", "total_rows", "imported_rows", "rejected_rows", "last_processed_row", "has_error_report", "checked_import_id", "applied_import_id", "expires_at", "size_bytes", "failure_summary", "error_code", "error_params", "row_errors", "row_errors_truncated", "started_at", "completed_at", "created_at", "updated_at"]
 
     @field_validator('kind')
     def kind_validate_enum(cls, value):
@@ -128,6 +132,21 @@ class CommercialImportDetailEnvelopeData(BaseModel):
         if self.sheet_name is None and "sheet_name" in self.model_fields_set:
             _dict['sheet_name'] = None
 
+        # set to None if checked_import_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.checked_import_id is None and "checked_import_id" in self.model_fields_set:
+            _dict['checked_import_id'] = None
+
+        # set to None if applied_import_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.applied_import_id is None and "applied_import_id" in self.model_fields_set:
+            _dict['applied_import_id'] = None
+
+        # set to None if size_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.size_bytes is None and "size_bytes" in self.model_fields_set:
+            _dict['size_bytes'] = None
+
         # set to None if failure_summary (nullable) is None
         # and model_fields_set contains the field
         if self.failure_summary is None and "failure_summary" in self.model_fields_set:
@@ -171,6 +190,10 @@ class CommercialImportDetailEnvelopeData(BaseModel):
             "rejected_rows": obj.get("rejected_rows"),
             "last_processed_row": obj.get("last_processed_row"),
             "has_error_report": obj.get("has_error_report"),
+            "checked_import_id": obj.get("checked_import_id"),
+            "applied_import_id": obj.get("applied_import_id"),
+            "expires_at": obj.get("expires_at"),
+            "size_bytes": obj.get("size_bytes"),
             "failure_summary": obj.get("failure_summary"),
             "error_code": obj.get("error_code"),
             "error_params": obj.get("error_params"),
