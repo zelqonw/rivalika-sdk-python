@@ -91,6 +91,9 @@ this validates dependencies for a fresh catalog without commercial writes.
 Dry-run and apply must use different idempotency keys. Reuse persisted progress
 for interrupted requests; rejected or missing rows raise `IntegrationError` and
 remain available in the progress record. Expired upload URLs are renewed.
+`auto_match=True` on a products import that is not a dry run asks Rivalika to link
+confident, unambiguous market candidates after the import; it never overwrites an
+existing link, and resume state records the mode.
 
 `export(request, idempotency_key=...)` verifies organization, export identity,
 dataset, row count and archive bounds. Decimal strings remain strings. Capture all

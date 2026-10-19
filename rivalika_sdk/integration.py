@@ -134,20 +134,27 @@ class IntegrationClient(RivalikaClient):
     def import_csv(self, kind: str, content: bytes, *, expected_rows: int, dry_run: bool,
                    idempotency_key: str, state: dict[str, Any] | None = None,
                    progress: Callable[[dict[str, Any]], None] | None = None,
-                   validation_import_ids: tuple[str, ...] = ()) -> dict[str, Any]:
+                   validation_import_ids: tuple[str, ...] = (),
+                   auto_match: bool = False) -> dict[str, Any]:
+        """`auto_match`: after a products apply, Rivalika links only confident, unambiguous
+        market candidates (source `auto_match`); it never overwrites an existing link."""
         if not 1 <= expected_rows <= 5000 or not 0 < len(content) <= 25 * 1024 * 1024:
             raise ValueError("Import chunk exceeds its row or byte limit")
         if validation_import_ids and not dry_run:
             raise ValueError("Validation dependencies require dry_run")
+        if auto_match and (dry_run or kind != "products"):
+            raise ValueError("Auto-match applies only to a products import that is not a dry run")
         dependencies = [str(uuid.UUID(value)) for value in validation_import_ids]
         current = dict(state or {})
         identity = hashlib.sha256(content).hexdigest()
-        if current and (current.get("sha256") != identity or current.get("dry_run") is not dry_run or current.get("validation_import_ids", []) != dependencies):
+        if current and (current.get("sha256") != identity or current.get("dry_run") is not dry_run or current.get("validation_import_ids", []) != dependencies
+                        or current.get("auto_match", False) is not auto_match):
             raise IntegrationError("Import resume state belongs to different content or mode")
         def save() -> None:
             if progress is not None:
                 progress(dict(current))
-        current.update(sha256=identity, dry_run=dry_run, expected_rows=expected_rows, validation_import_ids=dependencies)
+        current.update(sha256=identity, dry_run=dry_run, expected_rows=expected_rows, validation_import_ids=dependencies,
+                       auto_match=auto_match)
         if not current.get("import_id"):
             if not current.get("request"):
                 file_name = f"{kind}-{identity}.csv"
@@ -169,7 +176,7 @@ class IntegrationClient(RivalikaClient):
                         raise IntegrationError("Unexpected upload redirect")
                     break
                 current["request"] = {"kind": kind, "fileName": file_name, "storageKey": upload["storage_key"],
-                    "contentSha256": identity, "sizeBytes": len(content), "dryRun": dry_run, "autoMatchEnabled": False, "validationImportIds": dependencies}
+                    "contentSha256": identity, "sizeBytes": len(content), "dryRun": dry_run, "autoMatchEnabled": auto_match, "validationImportIds": dependencies}
                 save()
             accepted = self.data("POST", "/api/v1/commercial/imports", json=current["request"],
                                  headers={"Idempotency-Key": idempotency_key})

@@ -127,6 +127,56 @@ def test_import_renews_expired_upload_without_leaking_api_credentials(monkeypatc
     assert saved[-1]['result']['rejected_rows'] == 0
 
 
+def _completed_import(mutations):
+    import_id = '22222222-2222-4222-8222-222222222222'
+    def handler(request):
+        if request.url.path.endswith('prepare-upload'):
+            return httpx.Response(200, json={'data': {'upload_url': 'https://storage.example/upload', 'storage_key': 'prepared', 'upload_headers': {}}})
+        if request.method == 'POST':
+            mutations.append(json.loads(request.content))
+            return httpx.Response(202, json={'data': {'id': import_id}})
+        return httpx.Response(200, json={'data': {'id': import_id, 'status': 'completed', 'total_rows': 1, 'imported_rows': 1, 'rejected_rows': 0}})
+    return handler
+
+
+class _Uploader:
+    def __init__(self, **kwargs):
+        pass
+    def __enter__(self):
+        return self
+    def __exit__(self, *args):
+        pass
+    def put(self, url, **kwargs):
+        return httpx.Response(200, request=httpx.Request('PUT', url))
+
+
+def test_products_apply_can_ask_rivalika_to_auto_match(monkeypatch):
+    mutations, saved = [], []
+    with client(_completed_import(mutations)) as sdk:
+        # Only the storage upload uses a fresh httpx.Client; the API client exists already.
+        monkeypatch.setattr(httpx, 'Client', _Uploader)
+        sdk.import_csv('products', b'name\na\n', expected_rows=1, dry_run=False, idempotency_key='apply', progress=saved.append, auto_match=True)
+        sdk.import_csv('products', b'name\nb\n', expected_rows=1, dry_run=False, idempotency_key='plain')
+    assert [m['autoMatchEnabled'] for m in mutations] == [True, False]
+    assert saved[-1]['auto_match'] is True
+
+
+@pytest.mark.parametrize(('kind', 'dry_run'), [('products', True), ('partners', False)])
+def test_auto_match_is_refused_for_dry_runs_and_other_kinds(kind, dry_run):
+    with client(lambda request: httpx.Response(500)) as sdk:
+        with pytest.raises(ValueError, match='Auto-match'):
+            sdk.import_csv(kind, b'name\na\n', expected_rows=1, dry_run=dry_run, idempotency_key='k', auto_match=True)
+
+
+def test_import_resume_refuses_a_different_auto_match_mode():
+    import hashlib
+    content = b'name\na\n'
+    state = {'sha256': hashlib.sha256(content).hexdigest(), 'dry_run': False, 'import_id': '22222222-2222-4222-8222-222222222222'}
+    with client(lambda request: httpx.Response(500)) as sdk:
+        with pytest.raises(IntegrationError, match='different content or mode'):
+            sdk.import_csv('products', content, expected_rows=1, dry_run=False, idempotency_key='k', state=state, auto_match=True)
+
+
 def test_authenticated_download_carries_organization_and_bounds_bytes():
     def handler(request):
         assert request.headers['x-organization-id'] == ORG
